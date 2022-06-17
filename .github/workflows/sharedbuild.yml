@@ -3,6 +3,10 @@ name: Shared Build Steps
 on:
   workflow_call:
     inputs:
+      BRANCH:
+        description: "branch name."
+        type: string
+        required: true
       ENVIRONMENT:
         description: "Environment to build to."
         type: string
@@ -19,4 +23,4 @@ jobs:
       - name: step one in shared workflow
         id: step_one
         run: |
-          echo "for env we now have ${{ inputs.ENVIRONMENT }}"
+          echo "for env we now have ${{ inputs.ENVIRONMENT }} and branch is ${{ inputs.BRANCH }}"

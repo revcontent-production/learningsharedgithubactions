@@ -19,4 +19,4 @@ jobs:
       - name: step one in shared workflow
         id: step_one
         run: |
-          echo ${{ inputs.ENVIRONMENT }}
+          echo "for env we now have ${{ inputs.ENVIRONMENT }}"

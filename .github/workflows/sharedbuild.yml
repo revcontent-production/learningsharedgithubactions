@@ -1,0 +1,22 @@
+name: Shared Build Steps
+
+on:
+  workflow_call:
+    inputs:
+      ENVIRONMENT:
+        description: "Environment to build to."
+        type: string
+        required: true
+
+
+
+jobs:
+
+  build:
+    name: job in shared workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: step one in shared workflow
+        id: step_one
+        run: |
+          echo ${{ inputs.ENVIRONMENT }}

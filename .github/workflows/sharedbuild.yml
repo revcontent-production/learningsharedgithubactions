@@ -12,7 +12,8 @@ on:
         type: string
         required: true
     outputs:
-      releaseTag: ${{ jobs.build.outputs.releaseTag }}
+      releaseTag:
+        value: ${{ jobs.build.outputs.releaseTag }}
 
 
 jobs:

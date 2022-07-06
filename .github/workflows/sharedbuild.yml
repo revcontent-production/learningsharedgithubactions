@@ -11,7 +11,8 @@ on:
         description: "Environment to build to."
         type: string
         required: true
-
+    outputs:
+      releaseTag: ${{ jobs.build.outputs.releaseTag }}
 
 
 jobs:

@@ -14,6 +14,10 @@ on:
     outputs:
       releaseTag:
         value: ${{ jobs.build.outputs.releaseTag }}
+      ecsCluster:
+        value: ${{ jobs.build.outputs.ecsCluster }}
+      ecsService:
+        value: ${{ jobs.build.outputs.ecsService }}
 
 
 jobs:
@@ -33,11 +37,21 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ inputs.AWS_REGION }}
+
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
+
     outputs:
       releaseTag: ${{ steps.tag_version.outputs.new_tag }}
+      ecsCluster: "p0-v2"
+      ecsService: "hatemail-master"

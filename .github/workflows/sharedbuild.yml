@@ -11,6 +11,10 @@ on:
         description: "Environment to build to."
         type: string
         required: true
+      AWS_REGION:
+        description: "AWS Region"
+        type: string
+        required: true
     outputs:
       releaseTag:
         value: ${{ jobs.build.outputs.releaseTag }}
